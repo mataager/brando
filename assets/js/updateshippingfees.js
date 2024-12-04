@@ -47,7 +47,7 @@ function updateShippingFees() {
     ];
 
     if (city === "Al-Sharqia") {
-      shippingFees = 50; // Specific case for Al-Sharqia
+      shippingFees = 65; // Specific case for Al-Sharqia
     } else if (specialGovernorates.includes(city)) {
       shippingFees = 100; // Apply 100 EGP for special governorates and "Other"
     }
