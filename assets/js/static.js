@@ -7,7 +7,7 @@ const storePhoneNum2 = "";
 const storeEmail = "";
 const storeGender = ["Men"];
 const storeType = "clothing"; // clothing or footwear
-const freeshipping = "2000";
+const freeshipping = "3000";
 //images url
 const pannerurl = "https://i.imgur.com/YNvB0sw.jpeg";
 //
