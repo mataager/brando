@@ -16,7 +16,7 @@
     <!-- 
     - favicon
   -->
-    <link rel="shortcut icon" href="./favicon.png" type="image/svg+xml">
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
 
     <!-- 
     - custom css link
@@ -38,6 +38,26 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <!-- Other meta tags and links -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '981693980454288');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" />
+    </noscript>
 
 
 </head>
@@ -208,7 +228,6 @@
 
             <div class="footer-end flex space-around">
 
-
                 <ul class="footer-list">
 
                     <li>
@@ -227,13 +246,12 @@
 
                     <li>
                         <a href="tel:" id="store-call" class="footer-link">
-                            <ion-icon name="call" style="color: black;" role="img" class="md hydrated"
-                                aria-label="call"></ion-icon>
+                            <ion-icon name="call" role="img" class="md hydrated" aria-label="call"></ion-icon>
                             <span id="store-number" class="footer-link-text"></span>
                         </a>
                     </li>
 
-                    <li class="hidden">
+                    <li>
                         <a href="mailto:" id="store-email-link" class="footer-link">
                             <ion-icon name="mail" role="img" class="md hydrated" aria-label="mail"></ion-icon>
                             <span id="store-email" class="footer-link-text"></span>
@@ -242,15 +260,14 @@
 
                     <li>
                         <a href="#" class="footer-link" id="report-bug-btn">
-                            <ion-icon name="bug" style="color: black;"></ion-icon>
+                            <ion-icon name="bug"></ion-icon>
                             <span class="footer-link-text">Report a problem or a bug</span>
                         </a>
                     </li>
 
-
-
-
                 </ul>
+
+
 
                 <div class="footer-list">
 
@@ -268,6 +285,19 @@
                     </form>
 
                 </div>
+                <ul class="footer-list">
+                    <p class="footer-list-title">Matager</p>
+                    <li>
+                        <a href="https://matager.online/PrivacyPolicy.html" class="footer-link">
+                            <span class="footer-link-text">privacy policy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://matager.online/Termsofservice.html" class="footer-link">
+                            <span class="footer-link-text">Terms of service</span>
+                        </a>
+                    </li>
+                </ul>
 
             </div>
 

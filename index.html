@@ -36,25 +36,26 @@
     <script src="./assets/js/fetch-free.js"></script>
     <script src="./assets/js/search-product.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <head>
     <!-- Other meta tags and links -->
     <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '981693980454288'); 
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '981693980454288');
         fbq('track', 'PageView');
     </script>
     <noscript>
         <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+            src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" />
     </noscript>
-</head>
 
 </head>
 
@@ -89,11 +90,11 @@
                     <li class="navbar-item">
                         <a href="#" class="navbar-link" onclick="changeFrameSrc('index.html')">Home</a>
                     </li>
+
                     <!-- <li class="navbar-item">
                                         <a href="#" class="navbar-link" onclick="changeFrameSrc('About.html')">About</a>
                                     </li> -->
-
-                    <li class="navbar-item " id="megamenu" data-mega-menu>
+                    <li class="navbar-item" id="megamenu" data-mega-menu>
                         <div class="flex align-items justify-content-space-between">
                             <a href="#" class="navbar-link" onclick="changeFrameSrc('Products.html')">Products</a>
                             <a id="open-category" class="rotate open-category open-category-btn"><i
@@ -201,8 +202,19 @@
 
             <section class="section hero" id="panner-img">
                 <div class="container">
+
+                    <h2 class="h1 hero-title ">
+                        New Summer <strong>Clothes Collection</strong>
+                    </h2>
+
+                    <p class="hero-text ">
+                        Our commitment to quality ensures that each piece you purchase is crafted from the finest
+                        materials,
+                        offering unmatched
+                        comfort and durability.
+                    </p>
                     <a href="./Products.html">
-                        <button class="btn-shopnow mt-300">
+                        <button class="btn-shopnow">
                             <span>Shop Now</span>
 
                             <ion-icon name="arrow-forward-outline" aria-hidden="true" role="img"
@@ -214,13 +226,6 @@
                 </div>
 
             </section>
-            <div class="brands-container">
-                <img src="https://cdn.worldvectorlogo.com/logos/h-m.svg" alt="Brand 1">
-                <img src="https://cdn.worldvectorlogo.com/logos/bershka-1.svg" alt="Brand 2">
-                <img src="https://cdn.worldvectorlogo.com/logos/zara-logo-1.svg" alt="Brand 3">
-                <img src="https://cdn.worldvectorlogo.com/logos/pull-bear-2.svg" alt="Brand 4">
-            </div>
-
 
             <div>
                 <div id="men-area" class="hidden">
@@ -403,7 +408,7 @@
                     </section>
                 </div>
 
-                <div id="women-area" style="display: none;">
+                <div id="women-area" class="hidden">
                     <section class="mt-40 flex flex-wrap">
                         <div class="collection-card height-200 width-available m-20 pointer" id="womencollection-img"
                             onclick="changeFrameSrc('./Category.html?category=women')">
@@ -466,7 +471,7 @@
                         </div>
                     </section>
                 </div>
-                <div id="women-footware-area" style="display: none;">
+                <div id="women-footware-area" class="hidden">
                     <section class="section collection py-50 px-20">
                         <div class="container flex ">
                             <div class="flex flex-direction-column center p-10">
@@ -580,7 +585,7 @@
                     </section>
                 </div>
 
-                <div id="kids-area" style="display: none;">
+                <div id="kids-area" class="hidden">
                     <section class="mt-40 flex flex-wrap">
                         <div class="collection-card height-200 width-available m-20 pointer" id="kidscollection-img"
                             onclick="changeFrameSrc('./Category.html?category=kids')">
@@ -645,7 +650,7 @@
                         </div>
                     </section>
                 </div>
-                <div id="kids-footware-area" style="display: none;">
+                <div id="kids-footware-area" class="hidden">
                     <section class="section collection py-50 px-20">
                         <div class="container flex">
                             <div class="flex flex-direction-column center p-10">
@@ -1064,10 +1069,10 @@
                         </li>
 
                         <li>
-                            <a href="tel:" id="store-call" class="footer-link">
+                            <a href="tel:+20 102 605 6204" id="store-call" class="footer-link">
                                 <ion-icon name="call" style="color: black;" role="img" class="md hydrated"
                                     aria-label="call"></ion-icon>
-                                <span id="store-number" class="footer-link-text"></span>
+                                <span id="store-number" class="footer-link-text">+20 102 605 6204</span>
                             </a>
                         </li>
 
@@ -1080,7 +1085,8 @@
 
                         <li>
                             <a href="#" class="footer-link" id="report-bug-btn">
-                                <ion-icon name="bug" style="color: black;"></ion-icon>
+                                <ion-icon name="bug" style="color: black;" role="img" class="md hydrated"
+                                    aria-label="bug"></ion-icon>
                                 <span class="footer-link-text">Report a problem or a bug</span>
                             </a>
                         </li>

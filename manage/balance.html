@@ -48,9 +48,8 @@
         <div class="formbold-form-wrapper" style="height: 1000px;">
             <div class="mb-20 flex align-items space-between">
 
-                <div class="profile-icon " onclick="toggleDropdown()">
+                <div class="profile-icon profile-icon-img" onclick="toggleDropdown()">
                     <!-- <span><i class="bi bi-diagram-3"></i></span> -->
-                    <img class="available-width" src="./assets/images/favicon.png">
                     <div id="dropdown" class="dropdown-menu">
                         <a href="./main.html" class="center align-items"><i class="bi bi-house-door mr-5"></i> Home
                         </a>
@@ -115,7 +114,7 @@
             <script>
                 async function updateDashboard() {
                     try {
-
+                        
                         // Fetch the current Matager data
                         const response = await fetch(`${url}/Stores/${uid}/Matager.json`);
                         if (!response.ok) {
@@ -160,13 +159,9 @@
             <div class="flex flex-wrap center">
                 <div class="card mb-20 available-width padding-15 flex align-items flex-column">
                     <h2 class="mb-10">Matager Percentage</h2>
-                    <p class="mb-10i text-center">Matager charges a commission based on the plan you select. You can
-                        reduce this commission by upgrading to a higher plan.
-                        The required payment is automatically deducted from the total amount of all completed orders.
-                    </p>
-                    <a href="./profile.html" class="mb-10i a-know-more">
-                        <p>want to know your matager commission !</p>
-                    </a>
+                    <p class="mb-10i text-center">Matager charges a commission based on the plan you select. You can reduce this commission by upgrading to a higher plan.
+                    The required payment is automatically deducted from the total amount of all completed orders.</p>
+                    <a  href="./profile.html" class="mb-10i a-know-more"><p>want to know your matager commission !</p></a>
                     <button id="upgrade-plan-btn" class="m-LR-2 flex center align-items upgrade-plan-btn">
                         <p class="white mr-5i">Upgrade Your Plan Now</p>
                         <i class="bi bi-rocket-takeoff rocket-icon"></i>

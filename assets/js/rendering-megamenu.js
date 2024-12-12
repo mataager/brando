@@ -2,7 +2,6 @@ const showMen = storeGender.includes("Men");
 const showWomen = storeGender.includes("Women");
 const showKids = storeGender.includes("Kids");
 
-
 function renderMegaMenu() {
   const megaMenu = document.getElementById("mega-menu");
   megaMenu.innerHTML = `

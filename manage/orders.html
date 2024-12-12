@@ -21,6 +21,8 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
 
 
 <script src="./js/inithialize-firebase.js"></script>
@@ -44,8 +46,7 @@
     <main>
         <div class="formbold-form-wrapper">
             <div class="mb-20 flex align-items space-between">
-                <div class="profile-icon " onclick="toggleDropdown()">
-                    <img class="available-width" src="./assets/images/favicon.png">
+                <div class="profile-icon profile-icon-img" onclick="toggleDropdown()">
                     <!-- <span><i class="bi bi-diagram-3"></i></span> -->
                     <div id="dropdown" class="dropdown-menu">
                         <a href="./main.html" class="center align-items"><i class="bi bi-house-door mr-5"></i> Home
@@ -76,16 +77,8 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap center">
-                    <div class="card mb-20 height-max-content padding-15 ">
-
-                        <h3>Completed orders</h3>
-                        <p class="break-word" id="Completed-orders"></p>
-                        <div class="shine"></div>
-
-                    </div>
-                </div>
-                <div class="flex flex-wrap center">
-                    <div class="card mb-20 height-max-content padding-15">
+                    <div id="show-pending-btn" class="card mb-20 height-max-content padding-15 border-top-y"
+                        onclick="showpendingOrders()">
 
                         <h3>pending orders</h3>
                         <p class="break-word" id="Pending-orders"></p>
@@ -94,8 +87,18 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap center">
-                    <div class="card mb-20 height-max-content padding-15 ">
+                    <div id="show-completed-btn" class="card mb-20 height-max-content padding-15 border-top-g"
+                        onclick="showCompletedOrders()">
 
+                        <h3>Completed orders</h3>
+                        <p class="break-word" id="Completed-orders"></p>
+                        <div class="shine"></div>
+
+                    </div>
+                </div>
+                <div class="flex flex-wrap center">
+                    <div id="show-canceled-btn" class="card mb-20 height-max-content padding-15 border-top-r"
+                        onclick="showCanceledOrders()">
                         <h3>Canceld orders</h3>
                         <p class="break-word" id="Canceld-orders"></p>
                         <div class="shine"></div>
@@ -125,7 +128,7 @@
                     </button>
                 </div>
             </div>
-            <div class="flex center mt-18 mb-20">
+            <!-- <div class="flex center mt-18 mb-20">
                 <button id="show-pending-btn" class="m-LR-2 flex center align-items btn-3"
                     onclick="showpendingOrders()">
                     <p class="white">pending Orders</p>
@@ -138,7 +141,7 @@
                     onclick="showCanceledOrders()">
                     <p class="white">Canceled Orders</p>
                 </button>
-            </div>
+            </div> -->
             <div id="pending-orders-section" class="mb-20">
                 <div class="flex center mb-20">
                     Pending orders
@@ -151,14 +154,14 @@
                                     <tr>
                                         <th>Order ID</th>
                                         <th>Customer</th>
-                                        <th>Email</th>
+                                        <th class="w-300">Email</th>
                                         <th>City</th>
                                         <th>ِaddress</th>
                                         <th>Phone Number</th>
                                         <th>Telephone Number</th>
                                         <th>Shipping Fees</th>
                                         <th>Total Price</th>
-                                        <th class="textalign">More</th>
+                                        <th class="textalign w-300">More</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -193,14 +196,14 @@
                                     <tr>
                                         <th>Order ID</th>
                                         <th>Customer</th>
-                                        <th>Email</th>
+                                        <th class="w-300">Email</th>
                                         <th>City</th>
                                         <th>ِaddress</th>
                                         <th>Phone Number</th>
                                         <th>Telephone Number</th>
                                         <th>Shipping Fees</th>
                                         <th>Total Price</th>
-                                        <th class="textalign">More</th>
+                                        <th class="textalign w-300">More</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -231,14 +234,14 @@
                                     <tr>
                                         <th>Order ID</th>
                                         <th>Customer</th>
-                                        <th>Email</th>
+                                        <th class="w-300">Email</th>
                                         <th>City</th>
                                         <th>ِaddress</th>
                                         <th>Phone Number</th>
                                         <th>Telephone Number</th>
                                         <th>Shipping Fees</th>
                                         <th>Total Price</th>
-                                        <th class="textalign">More</th>
+                                        <th class="textalign w-300">More</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -287,34 +290,52 @@
             document.getElementById('completed-orders-section').classList.add('hidden');
             document.getElementById('Canceled-orders-section').classList.add('hidden');
 
+
+
             // Update button styles
-            document.getElementById('show-pending-btn').style.backgroundColor = '#6a64f1';
+            document.getElementById('show-pending-btn').style.backgroundColor = '#6a64f142';
             document.getElementById('show-completed-btn').style.backgroundColor = '';
             document.getElementById('show-canceled-btn').style.backgroundColor = '';
-        }
 
-        // Function to show completed orders section and highlight the button
+
+        }
         function showCompletedOrders() {
-            document.getElementById('pending-orders-section').classList.add('hidden');
-            document.getElementById('completed-orders-section').classList.remove('hidden');
-            document.getElementById('Canceled-orders-section').classList.add('hidden');
+            const completedOrdersSection = document.getElementById('completed-orders-section');
+            const completedOrdersTableBody = document.getElementById('completed-orders-table-body');
+            const pendingOrdersSection = document.getElementById('pending-orders-section');
+            const canceledOrdersSection = document.getElementById('Canceled-orders-section');
+
+            // Toggle visibility
+            pendingOrdersSection.classList.add('hidden');
+            completedOrdersSection.classList.remove('hidden');
+            canceledOrdersSection.classList.add('hidden');
 
             // Update button styles
             document.getElementById('show-pending-btn').style.backgroundColor = '';
-            document.getElementById('show-completed-btn').style.backgroundColor = '#6a64f1';
+            document.getElementById('show-completed-btn').style.backgroundColor = '#6a64f142';
             document.getElementById('show-canceled-btn').style.backgroundColor = '';
-        }
 
-        // Function to show canceled orders section and highlight the button
+            // Check if the completed orders table is empty
+
+        }
         function showCanceledOrders() {
-            document.getElementById('pending-orders-section').classList.add('hidden');
-            document.getElementById('completed-orders-section').classList.add('hidden');
-            document.getElementById('Canceled-orders-section').classList.remove('hidden');
+            const canceledOrdersSection = document.getElementById('Canceled-orders-section');
+            const canceledOrdersTableBody = document.getElementById('Canceled-orders-table-body');
+            const pendingOrdersSection = document.getElementById('pending-orders-section');
+            const completedOrdersSection = document.getElementById('completed-orders-section');
+
+            // Toggle visibility
+            pendingOrdersSection.classList.add('hidden');
+            completedOrdersSection.classList.add('hidden');
+            canceledOrdersSection.classList.remove('hidden');
 
             // Update button styles
             document.getElementById('show-pending-btn').style.backgroundColor = '';
             document.getElementById('show-completed-btn').style.backgroundColor = '';
-            document.getElementById('show-canceled-btn').style.backgroundColor = '#6a64f1';
+            document.getElementById('show-canceled-btn').style.backgroundColor = '#6a64f142';
+
+            // Check if the canceled orders table is empty
+
         }
 
         $(document).ready(function () {
@@ -369,15 +390,15 @@
                         if (row.closest('tbody').is('#orders-table-body')) {
                             $('#pending-orders-section').removeClass('hidden');
                             // Apply background color to the "Pending" button
-                            $('#show-pending-btn').css('background-color', '#6a64f1').siblings().css('background-color', '');
+                            $('#show-pending-btn').css('background-color', '#6a64f142').siblings().css('background-color', '');
                         } else if (row.closest('tbody').is('#completed-orders-table-body')) {
                             $('#completed-orders-section').removeClass('hidden');
                             // Apply background color to the "Completed" button
-                            $('#show-completed-btn').css('background-color', '#6a64f1').siblings().css('background-color', '');
+                            $('#show-completed-btn').css('background-color', '#6a64f142').siblings().css('background-color', '');
                         } else if (row.closest('tbody').is('#Canceled-orders-table-body')) {
                             $('#Canceled-orders-section').removeClass('hidden');
                             // Apply background color to the "Canceled" button
-                            $('#show-canceled-btn').css('background-color', '#6a64f1').siblings().css('background-color', '');
+                            $('#show-canceled-btn').css('background-color', '#6a64f142').siblings().css('background-color', '');
                         }
                     }
                 });

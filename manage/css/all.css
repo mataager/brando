@@ -235,10 +235,6 @@ body {
   margin: 2px;
 }
 
-.m-10 {
-  margin: 10px;
-}
-
 .mb-3 {
   margin-bottom: 3px;
 }
@@ -301,6 +297,10 @@ body {
 
 .p-7 {
   padding: 7px !important;
+}
+
+.p-100 {
+  padding: 100px;
 }
 
 .point {
@@ -603,13 +603,19 @@ input {
 
 }
 
+
 .profile-icon-img {
-  background-image: url('/assets/images/peacocklogo.svg');
-  background-size: cover;
+  background-image: url('../assets/images/favicon.png');
+  background-size: contain;
+  /* Ensures the image fits within the circle */
+  background-position: center;
+  /* Centers the image */
+  background-repeat: no-repeat;
+  /* Prevents tiling */
 }
 
 .profile-icon:hover {
-  background-color: #b6b6b636;
+  background-color: #ffffff;
   color: #000000;
 }
 
@@ -1098,6 +1104,7 @@ section {
 .no-orders {
   font-weight: 600;
   color: #a7a5a5;
+  padding: 100px;
 }
 
 .blue-check {
@@ -1259,4 +1266,26 @@ section {
 
 .inline-flex {
   display: inline-flex;
+}
+
+.border-top-y {
+  border-top: 2px solid #373714
+}
+
+.border-top-g {
+  border-top: 2px solid #00ff0026
+}
+
+.border-top-r {
+  border-top: 2px solid #ff00002b
+}
+
+.drop-zone img[src] {
+  display: block;
+  /* Show image only if a source is set */
+}
+
+.drop-zone img[src]+p {
+  display: none;
+  /* Hide text when image is present */
 }

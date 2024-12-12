@@ -28,21 +28,25 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <!-- Other meta tags and links -->
     <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '981693980454288'); 
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '981693980454288');
         fbq('track', 'PageView');
     </script>
     <noscript>
         <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+            src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" />
     </noscript>
 </head>
 
@@ -295,7 +299,9 @@
 
             </div>
 
+
             <div class="footer-end flex space-around">
+
                 <ul class="footer-list">
 
                     <li>
@@ -352,10 +358,10 @@
                     </li>
 
                     <li>
-                        <a href="tel:" id="store-call" class="footer-link">
+                        <a href="tel:+20 102 605 6204" id="store-call" class="footer-link">
                             <ion-icon name="call" style="color: black;" role="img" class="md hydrated"
                                 aria-label="call"></ion-icon>
-                            <span id="store-number" class="footer-link-text"></span>
+                            <span id="store-number" class="footer-link-text">+20 102 605 6204</span>
                         </a>
                     </li>
 
@@ -368,7 +374,8 @@
 
                     <li>
                         <a href="#" class="footer-link" id="report-bug-btn">
-                            <ion-icon name="bug" style="color: black;"></ion-icon>
+                            <ion-icon name="bug" style="color: black;" role="img" class="md hydrated"
+                                aria-label="bug"></ion-icon>
                             <span class="footer-link-text">Report a problem or a bug</span>
                         </a>
                     </li>
@@ -394,6 +401,8 @@
                     </form>
 
                 </div>
+
+
 
             </div>
 
