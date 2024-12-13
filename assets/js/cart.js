@@ -179,7 +179,7 @@ function renderAddresses(addresses) {
   if (firstAddressCity && firstAddress) {
     localStorage.setItem("City", firstAddressCity);
     localStorage.setItem("Payment", "COD");
-    localStorage.setItem("Address", JSON.stringify(firstAddress));
+    localStorage.setItem("Address", firstAddress);
     updateShippingFees();
   }
 }
