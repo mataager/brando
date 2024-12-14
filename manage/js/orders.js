@@ -758,6 +758,7 @@ async function print(orderId) {
     }
 
     // Shipping Fees, Payment Type, and Total Price
+    const payment = order.payment;
     const shippingFees = order.shippingFees;
     const totalPrice =
       order.cart.reduce(
@@ -768,7 +769,7 @@ async function print(orderId) {
 
     doc.text(`Shipping Fees: ${shippingFees} EGP`, 10, 80);
     doc.text(`Total Price: ${totalPrice} EGP`, 10, 90);
-    doc.text(`Payment Type: ${order.personal_info.payment}`, 10, 100);
+    doc.text(`Payment Type: ${payment}`, 10, 100);
 
     // Add Items to PDF
     doc.setFontSize(14);
