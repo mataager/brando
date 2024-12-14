@@ -73,9 +73,9 @@ function updateShippingFees() {
           "Ismailia",
         ].includes(savedGovernorate)
       ) {
-        shippingFeesElement.innerText = "65 EGP";
-        shippingFeesElementtotal.innerText = "65 EGP";
-        localStorage.setItem("shippingFees", "65");
+        shippingFeesElement.innerText = "70 EGP";
+        shippingFeesElementtotal.innerText = "70 EGP";
+        localStorage.setItem("shippingFees", "70");
       } else {
         shippingFeesElement.innerText = "100 EGP";
         shippingFeesElementtotal.innerText = "100 EGP";
