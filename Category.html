@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="store-title"></title>
-    <link rel="shortcut icon" href="./favicon.png" type="image/svg+xml">
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -28,39 +28,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <!-- Other meta tags and links -->
-    <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '981693980454288');
-        fbq('track', 'PageView');
-    </script>
-    <noscript>
-        <img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" />
-    </noscript>
-    <!-- TikTok Pixel Code Start -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-
-
-  ttq.load('CTIU19BC77UDE4D3RBS0');
-  ttq.page();
-}(window, document, 'ttq');
-</script>
-<!-- TikTok Pixel Code End -->
 </head>
 
 <div class="preloader" id="preloader">
@@ -198,7 +165,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
         </div>
     </header>
 
-    <section class="section product p-20">
+    <section class="section product">
         <div class="container pt-10">
             <div class="flex align-items justify-content-space-between">
                 <div class="flex align-items section-title">
@@ -239,6 +206,11 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <div class="modal">
         <div class="modal-content">
             <!-- Product details will be inserted here dynamically -->
+        </div>
+    </div>
+    <div id="modal-fav" class="modal">
+        <div id="modal-fav-content" class="fav-modal-content">
+    
         </div>
     </div>
 
@@ -312,69 +284,28 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 
             </div>
 
-
             <div class="footer-end flex space-around">
 
-                <ul class="footer-list">
-
-                    <li>
-                        <p class="footer-list-title">Main Items</p>
-                    </li>
-
-
-                    <li>
-                        <a href="./Category.html?piece=Jacket" class="footer-link">
-                            <i class="bi bi-dot" style="color: black;"></i> <span class="footer-link-text">Jacket</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./Category.html?piece=Hoodie" class="footer-link">
-                            <i class="bi bi-dot" style="color: black;"></i>
-                            <span class="footer-link-text">Hoodie</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./Category.html?piece=Jeans" class="footer-link">
-                            <i class="bi bi-dot" style="color: black;"></i>
-                            <span class="footer-link-text">Jeans</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./Category.html?piece=Shoes" class="footer-link">
-                            <i class="bi bi-dot" style="color: black;"></i>
-                            <span class="footer-link-text">Shoes</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./Category.html?piece=Toursers" class="footer-link">
-                            <i class="bi bi-dot" style="color: black;"></i>
-                            <span class="footer-link-text">Toursers</span>
-                        </a>
-                    </li>
-
-
-                </ul>
                 <ul class="footer-list">
 
                     <li>
                         <p class="footer-list-title">Contact Us</p>
                     </li>
 
-                    <li>
-                        <address class="footer-link hidden">
+                    <!-- <li>
+                        <address class="footer-link">
                             <ion-icon name="location" role="img" class="md hydrated" aria-label="location"></ion-icon>
 
-                            <span class="footer-link-text">
+                            <span class="footer-link-text hidden">
                                 type any addrress
                             </span>
                         </address>
-                    </li>
+                    </li> -->
 
                     <li>
-                        <a href="tel:+20 102 605 6204" id="store-call" class="footer-link">
-                            <ion-icon name="call" style="color: black;" role="img" class="md hydrated"
-                                aria-label="call"></ion-icon>
-                            <span id="store-number" class="footer-link-text">+20 102 605 6204</span>
+                        <a href="tel:" id="store-call" class="footer-link">
+                            <ion-icon name="call" role="img" class="md hydrated" aria-label="call"></ion-icon>
+                            <span id="store-number" class="footer-link-text"></span>
                         </a>
                     </li>
 
@@ -387,16 +318,14 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 
                     <li>
                         <a href="#" class="footer-link" id="report-bug-btn">
-                            <ion-icon name="bug" style="color: black;" role="img" class="md hydrated"
-                                aria-label="bug"></ion-icon>
+                            <ion-icon name="bug"></ion-icon>
                             <span class="footer-link-text">Report a problem or a bug</span>
                         </a>
                     </li>
 
-
-
-
                 </ul>
+
+
 
                 <div class="footer-list">
 
@@ -414,8 +343,19 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
                     </form>
 
                 </div>
-
-
+                <ul class="footer-list">
+                    <p class="footer-list-title">Matager</p>
+                    <li>
+                        <a href="https://matager.online/PrivacyPolicy.html" class="footer-link">
+                            <span class="footer-link-text">privacy policy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://matager.online/Termsofservice.html" class="footer-link">
+                            <span class="footer-link-text">Terms of service</span>
+                        </a>
+                    </li>
+                </ul>
 
             </div>
 
@@ -448,3 +388,4 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <script src="./assets/js/rendering-megamenu.js"></script>
 <script src="./assets/js/rendering-search.js"></script>
 <script src="./assets/js/rendering-sidebar.js"></script>
+<script src="./assets/js/addfavouriteproduct.js"></script>

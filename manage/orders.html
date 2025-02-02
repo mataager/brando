@@ -16,15 +16,14 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/alll.css">
+
 </head>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-
-
-
+<script src="./js/NotoSansArabicBase64.js"></script>
 <script src="./js/inithialize-firebase.js"></script>
 <script>
     function checkAuthAndRedirect() {
@@ -161,7 +160,7 @@
                                         <th>Telephone Number</th>
                                         <th>Shipping Fees</th>
                                         <th>Total Price</th>
-                                        <th class="textalign w-300">More</th>
+                                        <th class="textalign w-500">More</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -203,7 +202,7 @@
                                         <th>Telephone Number</th>
                                         <th>Shipping Fees</th>
                                         <th>Total Price</th>
-                                        <th class="textalign w-300">More</th>
+                                        <th class="textalign w-500">More</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -241,7 +240,7 @@
                                         <th>Telephone Number</th>
                                         <th>Shipping Fees</th>
                                         <th>Total Price</th>
-                                        <th class="textalign w-300">More</th>
+                                        <th class="textalign w-500">More</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -281,6 +280,7 @@
     </div>
 
     <script src="./js/orders.js"></script>
+    <script src="./js/printer.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         // Function to show pending orders section

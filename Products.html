@@ -20,6 +20,8 @@
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+
     <script src="./assets/js/static.js"></script>
     <script src="./assets/js/search-product.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -28,39 +30,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <!-- Other meta tags and links -->
-    <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '981693980454288');
-        fbq('track', 'PageView');
-    </script>
-    <noscript>
-        <img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" />
-    </noscript>
-<!-- TikTok Pixel Code Start -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
 
-
-  ttq.load('CTIU19BC77UDE4D3RBS0');
-  ttq.page();
-}(window, document, 'ttq');
-</script>
-<!-- TikTok Pixel Code End -->
 </head>
 <div class="preloader" id="preloader">
     <img src="favicon.png" alt="Your Image" width="40" height="40">
@@ -94,9 +64,6 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
                 <li class="navbar-item">
                     <a href="#" class="navbar-link" onclick="changeFrameSrc('index.html')">Home</a>
                 </li>
-                <!-- <li class="navbar-item">
-                                        <a href="#" class="navbar-link" onclick="changeFrameSrc('About.html')">About</a>
-                                    </li> -->
                 <li class="navbar-item" id="megamenu" data-mega-menu>
                     <div class="flex align-items justify-content-space-between">
                         <a href="#" class="navbar-link" onclick="changeFrameSrc('Products.html')">Products</a>
@@ -198,7 +165,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 </header>
 <article>
 
-    <section class="section product p-20">
+    <section class="section product">
         <div class="container pt-10">
             <div class="flex align-items justify-content-space-between">
                 <div class="flex align-items section-title">
@@ -213,6 +180,47 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
                     </div>
                 </div>
             </div>
+            <div class=" align-items center pb-20 inlines-button">
+                <button id="1inline" class="grid-button"><img src="./assets/icons/1inline.svg"></button>
+                <button id="2inline" class="grid-button"> <img src="./assets/icons/2inline.svg"></button>
+            </div>
+            <script>
+                // Functionality for the 1inline button
+                document.getElementById('1inline').addEventListener('click', function () {
+                    const container = document.querySelector('.product-list');
+
+                    if (container) {
+                        // Remove product-list and add product-grid
+                        container.classList.remove('product-list');
+                        container.classList.add('product-grid');
+                    }
+
+                    // Update button active state
+                    document.getElementById('1inline').classList.add('active');
+                    document.getElementById('2inline').classList.remove('active');
+                });
+
+                // Functionality for the 2inline button
+                document.getElementById('2inline').addEventListener('click', function () {
+                    const container = document.querySelector('.product-grid');
+
+                    if (container) {
+                        // Remove product-grid and add product-list
+                        container.classList.remove('product-grid');
+                        container.classList.add('product-list');
+                    }
+
+                    // Update button active state
+                    document.getElementById('2inline').classList.add('active');
+                    document.getElementById('1inline').classList.remove('active');
+                });
+            </script>
+
+
+
+
+
+
 
             <ul class="product-list">
 
@@ -240,6 +248,14 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
             <!-- Product details will be inserted here dynamically -->
         </div>
     </div>
+    <div id="modal-fav" class="modal">
+        <div id="modal-fav-content" class="fav-modal-content">
+
+        </div>
+    </div>
+
+    <script src="./assets/js/addfavouriteproduct.js"></script>
+
 
 
 </article>
@@ -269,153 +285,112 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <footer class="footer">
     <div class="footer-top section">
         <div class="container">
-    
+
             <div class="footer-brand">
-    
+
                 <a href="#" class="logo">
                     <img src="./assets/images/iicon.svg" width="160" height="50" alt="">
                 </a>
-    
+
                 <ul class="social-list hidden">
-    
+
                     <li>
                         <a href="#" class="social-link">
                             <ion-icon name="logo-facebook" role="img" class="md hydrated"
                                 aria-label="logo facebook"></ion-icon>
                         </a>
                     </li>
-    
+
                     <li>
                         <a href="#" class="social-link">
                             <ion-icon name="logo-twitter" role="img" class="md hydrated"
                                 aria-label="logo twitter"></ion-icon>
                         </a>
                     </li>
-    
+
                     <li>
                         <a href="#" class="social-link">
                             <ion-icon name="logo-pinterest" role="img" class="md hydrated"
                                 aria-label="logo pinterest"></ion-icon>
                         </a>
                     </li>
-    
+
                     <li>
                         <a href="#" class="social-link">
                             <ion-icon name="logo-linkedin" role="img" class="md hydrated"
                                 aria-label="logo linkedin"></ion-icon>
                         </a>
                     </li>
-    
+
                 </ul>
-    
+
             </div>
-    
-    
+
             <div class="footer-end flex space-around">
-    
+
                 <ul class="footer-list">
-    
-                    <li>
-                        <p class="footer-list-title">Main Items</p>
-                    </li>
-    
-    
-                    <li>
-                        <a href="./Category.html?piece=Jacket" class="footer-link">
-                            <i class="bi bi-dot" style="color: black;"></i> <span class="footer-link-text">Jacket</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./Category.html?piece=Hoodie" class="footer-link">
-                            <i class="bi bi-dot" style="color: black;"></i>
-                            <span class="footer-link-text">Hoodie</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./Category.html?piece=Jeans" class="footer-link">
-                            <i class="bi bi-dot" style="color: black;"></i>
-                            <span class="footer-link-text">Jeans</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./Category.html?piece=Shoes" class="footer-link">
-                            <i class="bi bi-dot" style="color: black;"></i>
-                            <span class="footer-link-text">Shoes</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./Category.html?piece=Toursers" class="footer-link">
-                            <i class="bi bi-dot" style="color: black;"></i>
-                            <span class="footer-link-text">Toursers</span>
-                        </a>
-                    </li>
-    
-    
-                </ul>
-                <ul class="footer-list">
-    
+
                     <li>
                         <p class="footer-list-title">Contact Us</p>
                     </li>
-    
+
                     <li>
-                        <address class="footer-link hidden">
-                            <ion-icon name="location" role="img" class="md hydrated" aria-label="location"></ion-icon>
-    
-                            <span class="footer-link-text">
-                                type any addrress
-                            </span>
-                        </address>
-                    </li>
-    
-                    <li>
-                        <a href="tel:+20 102 605 6204" id="store-call" class="footer-link">
-                            <ion-icon name="call" style="color: black;" role="img" class="md hydrated"
-                                aria-label="call"></ion-icon>
-                            <span id="store-number" class="footer-link-text">+20 102 605 6204</span>
+                        <a href="tel:" id="store-call" class="footer-link">
+                            <ion-icon name="call" role="img" class="md hydrated" aria-label="call"></ion-icon>
+                            <span id="store-number" class="footer-link-text"></span>
                         </a>
                     </li>
-    
+
                     <li class="hidden">
                         <a href="mailto:" id="store-email-link" class="footer-link">
                             <ion-icon name="mail" role="img" class="md hydrated" aria-label="mail"></ion-icon>
                             <span id="store-email" class="footer-link-text"></span>
                         </a>
                     </li>
-    
+
                     <li>
                         <a href="#" class="footer-link" id="report-bug-btn">
-                            <ion-icon name="bug" style="color: black;" role="img" class="md hydrated"
-                                aria-label="bug"></ion-icon>
+                            <ion-icon name="bug"></ion-icon>
                             <span class="footer-link-text">Report a problem or a bug</span>
                         </a>
                     </li>
-    
-    
-    
-    
+
                 </ul>
-    
+
+
+
                 <div class="footer-list">
-    
+
                     <p class="footer-list-title">Newsletter</p>
-    
+
                     <p class="newsletter-text">
                         Send us your email to keeping up with our latest updates..
                     </p>
-    
+
                     <form action="" class="newsletter-form">
-                        <input type="email" name="email" required="" placeholder="Email Address" class="newsletter-input">
-    
+                        <input type="email" name="email" required="" placeholder="Email Address"
+                            class="newsletter-input">
+
                         <button type="submit" class="btn2 btn-primary">Subscribe</button>
                     </form>
-    
+
                 </div>
-    
-    
-    
+                <ul class="footer-list">
+                    <p class="footer-list-title">Matager</p>
+                    <li>
+                        <a href="https://matager.online/PrivacyPolicy.html" class="footer-link">
+                            <span class="footer-link-text">privacy policy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://matager.online/Termsofservice.html" class="footer-link">
+                            <span class="footer-link-text">Terms of service</span>
+                        </a>
+                    </li>
+                </ul>
+
             </div>
-    
+
         </div>
     </div>
     <div class="flex center">
@@ -441,8 +416,8 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <script src="./assets/js/flip-img.js"></script>
 <script src="./assets/js/update-cart-amont.js"></script>
 <script src="./assets/js/report.js"></script>
-<script src="./assets/js/filter.js"></script>
 <script src="./assets/js/all.js"></script>
+<script src="./assets/js/filter.js"></script>
 <script src="./assets/js/rendering-megamenu.js"></script>
 <script src="./assets/js/rendering-search.js"></script>
 <script src="./assets/js/rendering-sidebar.js"></script>

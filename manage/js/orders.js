@@ -141,18 +141,24 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${housenumber}</td>
                         <td>${order.shippingFees} EGP</td>
                         <td>${totalPrice} EGP</td>
-                        <td class="flex center align items inherit-color w-300">
-                            <button type="button" class="formbold-form-label addbtn pointer open-order-btn p-7">
-                                <i class="bi bi-plus-circle point" data-order-id="${orderId}"></i>
+                        <td class="flex center align items w-500">
+                            <button type="button" class="addbtn pointer open-order-btn p-7">
+                             <p>Open Order</p><i class="bi bi-plus-circle point" data-order-id="${orderId}"></i>
                             </button>
-                            <button type="button" class="formbold-form-label addbtn pointer accept-order-btn p-7" data-order-id="${orderId}" id="Activate" onclick="updateOrderStatus('${orderId}','${Customeruid}','${cutomerorderuid}', 'accepted', event)">
-                              <i class="bi bi-box-fill pointer"></i>
+                            <button type="button" class="addbtn pointer accept-order-btn p-7" data-order-id="${orderId}" id="Activate" onclick="updateOrderStatus('${orderId}','${Customeruid}','${cutomerorderuid}', 'accepted', event)">
+                               <p>Accept Order</p><i class="bi bi-box-fill pointer"></i>
                             </button>
-                            <button type="button" class="formbold-form-label addbtn pointer accept-order-btn p-7" data-order-id="${orderId}" id="print" onclick="print('${orderId}')">
-                                <i class="bi bi-printer"></i>
+                            <button type="button" class="addbtn pointer out-for-shipping accept-order-btn p-7 hidden" data-order-id="${orderId}" id="" onclick="updateOrderStatus('${orderId}','${Customeruid}','${cutomerorderuid}', 'shipped', event)">
+                               <p>Mark As Shipped</p> <i class="bi bi-truck"></i>
                             </button>
-                            <button type="button" class="formbold-form-label addbtn pointer deaccept-order-btn p-7" data-order-id="${orderId}" id="Deactivate" onclick="updateOrderStatus('${orderId}','${Customeruid}','${cutomerorderuid}', 'notaccepted', event)">
-                                <i class="bi bi-x-circle pointer"></i>
+                            <button type="button" class="addbtn pointer returned accept-order-btn p-7 hidden" data-order-id="${orderId}" id="" onclick="updateOrderStatus('${orderId}','${Customeruid}','${cutomerorderuid}', 'returned', event)">
+                               <p>Mark As Returned</p> <i class="bi bi-arrow-counterclockwise"></i>
+                            </button>
+                            <button type="button" class="addbtn pointer accept-order-btn p-7" data-order-id="${orderId}" id="print" onclick="print('${orderId}')">
+                                 <p>Print Order</p><i class="bi bi-printer"></i>
+                            </button>
+                            <button type="button" class="addbtn pointer deaccept-order-btn p-7" data-order-id="${orderId}" id="Deactivate" onclick="updateOrderStatus('${orderId}','${Customeruid}','${cutomerorderuid}', 'notaccepted', event)">
+                                <p>Cancel Order</p><i class="bi bi-x-circle pointer"></i>
                             </button>
                             
                         </td>
@@ -354,7 +360,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const acceptedRow = row.cloneNode(true);
         acceptedRow.querySelector(".accept-order-btn")?.remove();
         acceptedRow.querySelector(".delete-order-btn")?.remove();
-
         completedOrdersTableBody.appendChild(acceptedRow);
         row.remove(); // Remove from the current table
 
@@ -580,6 +585,81 @@ document.addEventListener("click", function (event) {
   }
 });
 
+// async function toggleOrderDetails(event) {
+//   const row = event.currentTarget;
+//   const nextRow = row.nextElementSibling;
+
+//   // Check if the next row is already the details row
+//   if (nextRow && nextRow.classList.contains("order-details")) {
+//     // Collapse to hide cart items
+//     nextRow.remove();
+//   } else {
+//     // Expand to show cart items
+//     try {
+//       const orderId = row.getAttribute("data-order-id");
+//       const response = await fetch(
+//         `${url}/Stores/${uid}/orders/${orderId}.json`
+//       );
+//       const order = await response.json();
+
+//       if (!order || !order.cart) {
+//         console.error("Order or cart is null or undefined.");
+//         return;
+//       }
+
+//       const cartItems = order.cart
+//         .map(
+//           (item) => `
+//                 <tr class="cart-item">
+//                     <td colspan="11">
+//                         <div style="display: flex; align-items: center; width: max-content;">
+//                             <img src="${item.photourl}" alt="${
+//             item.title
+//           }" style="width: auto; height: 80px; margin-right: 10px;" class="clickable-image pointer">
+//                             <div style="display: flex; flex-direction: column; gap: 5px;" >
+//                                 <p>${item.id}</p>
+//                                 <p>${item.brand}</p>
+//                                 <p>${item.productColor}</p>
+//                                 <p>${item.productSize}</p>
+//                                 <p>Qty: ${item.quantity}</p>
+//                                 <p>${
+//                                   parseFloat(item.price.replace(" EGP", "")) *
+//                                   item.quantity
+//                                 } EGP</p>
+
+//                             </div>
+//                         </div>
+//                     </td>
+//                 </tr>
+//             `
+//         )
+//         .join("");
+
+//       const detailsRow = document.createElement("tr");
+//       detailsRow.classList.add("order-details");
+//       detailsRow.innerHTML = `
+//                 <td colspan="11">
+//                     <table style="width: 100%;">
+//                         <tbody class="flex flex-wrap">
+//                             ${cartItems}
+//                         </tbody>
+//                     </table>
+//                 </td>
+//             `;
+//       row.after(detailsRow);
+
+//       // Attach click event to images
+//       document.querySelectorAll(".clickable-image").forEach((img) => {
+//         img.addEventListener("click", openModal);
+//       });
+//     } catch (error) {
+//       console.error("Error fetching order details:", error);
+//     }
+//   }
+// }
+
+// Modal handling functions
+
 async function toggleOrderDetails(event) {
   const row = event.currentTarget;
   const nextRow = row.nextElementSibling;
@@ -589,7 +669,12 @@ async function toggleOrderDetails(event) {
     // Collapse to hide cart items
     nextRow.remove();
   } else {
-    // Expand to show cart items
+    // Add wave loading effect
+    row.classList.add("wave-loading");
+
+    const MIN_LOADING_TIME = 1000; // Minimum wave effect duration in milliseconds
+    const startTime = Date.now();
+
     try {
       const orderId = row.getAttribute("data-order-id");
       const response = await fetch(
@@ -604,43 +689,46 @@ async function toggleOrderDetails(event) {
 
       const cartItems = order.cart
         .map(
-          (item) => `
-                <tr class="cart-item">
-                    <td colspan="9">
-                        <div style="display: flex; align-items: center; width: max-content;">
-                            <img src="${item.photourl}" alt="${
-            item.title
-          }" style="width: auto; height: 80px; margin-right: 10px;" class="clickable-image pointer">
-                            <div style="display: flex; flex-direction: column; gap: 5px;" >
-                                <p>${item.id}</p>
-                                <p>${item.brand}</p>
-                                <p>${item.productColor}</p>
-                                <p>${item.productSize}</p>
-                                <p>Qty: ${item.quantity}</p>
-                                <p>${
-                                  parseFloat(item.price.replace(" EGP", "")) *
-                                  item.quantity
-                                } EGP</p>
-
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            `
+          (item) => `  
+            <tr class="cart-item">
+              <td colspan="11">
+                <div style="display: flex; align-items: center; width: max-content;">
+                  <img src="${item.photourl}" alt="${item.title}" 
+                       style="width: auto; height: 80px; margin-right: 10px;" 
+                       class="clickable-image pointer">
+                  <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <p>${item.id}</p>
+                    <p>${item.brand}</p>
+                    <p>${item.productColor}</p>
+                    <p>${item.productSize}</p>
+                    <p>Qty: ${item.quantity}</p>
+                    <p>${
+                      parseFloat(item.price.replace(" EGP", "")) * item.quantity
+                    } EGP</p>
+                  </div>
+                </div>
+              </td>
+            </tr>`
         )
         .join("");
+
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, MIN_LOADING_TIME - elapsedTime);
+
+      // Wait for the remaining time before adding the details row
+      await new Promise((resolve) => setTimeout(resolve, remainingTime));
 
       const detailsRow = document.createElement("tr");
       detailsRow.classList.add("order-details");
       detailsRow.innerHTML = `
-                <td colspan="9">
-                    <table style="width: 100%;">
-                        <tbody class="flex flex-wrap">
-                            ${cartItems}
-                        </tbody>
-                    </table>
-                </td>
-            `;
+        <td colspan="11">
+          <table style="width: 100%;">
+            <tbody class="flex flex-wrap">
+              ${cartItems}
+            </tbody>
+          </table>
+        </td>
+      `;
       row.after(detailsRow);
 
       // Attach click event to images
@@ -649,11 +737,13 @@ async function toggleOrderDetails(event) {
       });
     } catch (error) {
       console.error("Error fetching order details:", error);
+    } finally {
+      // Remove the wave-loading effect after 2 seconds
+      row.classList.remove("wave-loading");
     }
   }
 }
 
-// Modal handling functions
 const modal = document.getElementById("imageModal");
 const modalImg = document.getElementById("modalImage");
 const captionText = document.getElementById("caption");
@@ -729,124 +819,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-async function print(orderId) {
-  try {
-    // Fetch order details
-    const response = await fetch(`${url}/Stores/${uid}/orders/${orderId}.json`);
-    const order = await response.json();
-    if (!order) {
-      console.error("Order not found.");
-      return;
-    }
-
-    // Initialize jsPDF
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-
-    // Add Order Details to PDF
-    doc.setFontSize(16);
-    doc.text(`Order ID: ${orderId}`, 10, 10);
-    doc.text(`Customer Name: ${order.personal_info.name}`, 10, 20);
-    doc.text(`Email: ${order.personal_info.email}`, 10, 30);
-    doc.text(`City: ${order.personal_info.city}`, 10, 40);
-    doc.text(`Address: ${order.personal_info.address}`, 10, 50);
-
-    // Display both phone numbers, if available
-    doc.text(`Phone 1: ${order.personal_info.phone}`, 10, 60);
-    if (order.personal_info.phone2) {
-      doc.text(`Phone 2: ${order.personal_info.phone2}`, 10, 70);
-    }
-
-    // Shipping Fees, Payment Type, and Total Price
-    const payment = order.payment;
-    const shippingFees = order.shippingFees;
-    const totalPrice =
-      order.cart.reduce(
-        (sum, item) =>
-          sum + parseFloat(item.price.replace(" EGP", "")) * item.quantity,
-        0
-      ) + shippingFees;
-
-    doc.text(`Shipping Fees: ${shippingFees} EGP`, 10, 80);
-    doc.text(`Total Price: ${totalPrice} EGP`, 10, 90);
-    doc.text(`Payment Type: ${payment}`, 10, 100);
-
-    // Add Items to PDF
-    doc.setFontSize(14);
-    doc.text("Items:", 10, 110);
-
-    let yPosition = 130; // Start position for items
-    const pageWidth = doc.internal.pageSize.getWidth();
-    const imageWidth = 40;
-    const imageHeight = 40;
-    const padding = 10;
-    const textPadding = 5;
-
-    for (const item of order.cart) {
-      const itemText = `${item.title} - ${item.brand}, Size: ${item.productSize}, Color: ${item.productColor}, Qty: ${item.quantity}, Price: ${item.price}`;
-
-      // Fetch and add the image to PDF
-      const imgBase64 = await fetchImageAsBase64(item.photourl);
-      if (imgBase64) {
-        // Add image
-        doc.addImage(imgBase64, "JPEG", 10, yPosition, imageWidth, imageHeight);
-
-        // Add text next to the image
-        const xPosition = 10 + imageWidth + padding;
-        const maxTextWidth = pageWidth - xPosition - padding;
-        const wrappedText = doc.splitTextToSize(itemText, maxTextWidth);
-        doc.text(wrappedText, xPosition, yPosition + textPadding);
-
-        // Increase yPosition for the next item
-        yPosition += imageHeight + padding + wrappedText.length * 5;
-      } else {
-        // No image, just add the text
-        const maxTextWidth = pageWidth - padding * 2;
-        const wrappedText = doc.splitTextToSize(itemText, maxTextWidth);
-        doc.text(wrappedText, 10, yPosition);
-
-        yPosition += wrappedText.length * 5 + padding;
-      }
-
-      // Add a new page if the yPosition exceeds page height
-      if (yPosition > doc.internal.pageSize.getHeight() - 20) {
-        doc.addPage();
-        yPosition = 20; // Reset yPosition for new page
-      }
-    }
-
-    // Save the PDF
-    doc.save(`Order_${orderId}.pdf`);
-  } catch (error) {
-    console.error("Error printing order:", error);
-  }
-}
-
-// Helper function to fetch image as Base64
-async function fetchImageAsBase64(imageUrl) {
-  try {
-    const response = await fetch(imageUrl);
-    const blob = await response.blob();
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob); // This converts the blob into a Base64 string
-    });
-  } catch (error) {
-    console.error("Error fetching image:", error);
-    return null;
-  }
-}
-
-//
 async function updateCustomerOrder(
   customerUid,
   customerOrderUid,
   status,
   idToken
 ) {
-  const orderHistoryUrl = `https://matager-f1f00-default-rtdb.firebaseio.com/users/${customerUid}/orderHistory/${customerOrderUid}.json?auth=${idToken}`;
+  const orderHistoryUrl = `https://matager-f1f00-default-rtdb.firebaseio.com/users/${customerUid}/orderHistory/${uid}/${customerOrderUid}.json?auth=${idToken}`;
   try {
     const response = await fetch(orderHistoryUrl, {
       method: "PATCH",

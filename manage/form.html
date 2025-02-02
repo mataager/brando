@@ -17,6 +17,7 @@
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <!-- //sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="./css/all.css">
@@ -79,20 +80,27 @@
             </div>
             <div class="mb-20 flex align-items space-evenly">
                 <div class="profile-icon add target-ico circle-ico" id="add-btn"
-                    onclick="showForm('add-product-form', 'add-btn')">
+                    onclick="showForm('add-product-form', 'add-btn')" title="Add Product">
                     <span><i class="bi bi-folder-plus"></i></span>
                 </div>
                 <div class="profile-icon edit circle-ico" id="edit-btn"
-                    onclick="showForm('edit-product-form', 'edit-btn')">
-                    <span><i class="bi bi-folder-symlink"></i></span>
+                    onclick="showForm('edit-product-form', 'edit-btn')" title="Edit Product">
+                    <span><i class="bi bi-folder2-open"></i></span>
                 </div>
                 <div class="profile-icon delete circle-ico" id="delete-btn"
-                    onclick="showForm('delete-product-form', 'delete-btn')">
+                    onclick="showForm('delete-product-form', 'delete-btn')" title="Delete Product">
                     <span><i class="bi bi-folder-x"></i></span>
                 </div>
             </div>
 
             <form id="add-product-form">
+                <div class="form-check form-switch flex center align-items-center mt-50">
+                    <input class="form-check-input" type="checkbox" role="switch" id="BestsellerSwitcheradd"
+                        bestseller="false">
+                    <label class="form-check-label font-sm" for="BestsellerSwitcher">
+                        Mark as Best Seller <i class="bi bi-lightning-charge-fill"></i>
+                    </label>
+                </div>
                 <div class="formbold-input-group">
                     <label for="producttitle" class="formbold-form-label"> Product-Title </label>
                     <input type="text" name="product-title" id="producttitle" placeholder="Enter your product title"
@@ -169,6 +177,7 @@
                     <textarea rows="6" name="product-description" id="productdescription"
                         placeholder="Type product description here..." class="formbold-form-input shadow"></textarea>
                 </div>
+
                 <div class="formbold-input-group">
                     <div class="flex center align-items shadow p5 mb-20">
                         <label for="name" class="formbold-form-label" style="margin-bottom:0 !important;"> Add Products
@@ -189,7 +198,7 @@
                     </div>
                 </button>
             </form>
-            <script src="./js/add-product.js"></script>
+
 
             <form id="edit-product-form" class="hidden">
                 <div class="flex center">
@@ -234,6 +243,13 @@
                                     onclick="document.getElementById('fileInput6').click();">
                             </div>
                         </div>
+
+                        <div class="form-check form-switch flex center align-items-center mt-18">
+                            <input class="form-check-input" type="checkbox" role="switch" id="BestsellerSwitcher">
+                            <label class="form-check-label font-sm" for="BestsellerSwitcher">
+                                Mark as Best Seller <i class="bi bi-lightning-charge-fill"></i>
+                            </label>
+                        </div>
                         <!-- File inputs to select new images -->
                         <input type="file" id="fileInput1" style="display: none;" accept="image/*"
                             onchange="handleFileChange(event, 'mainimg1')">
@@ -248,6 +264,8 @@
                         <input type="file" id="fileInput6" style="display: none;" accept="image/*"
                             onchange="handleFileChange(event, 'mainimg6')">
                     </div>
+
+
 
 
                     <div class="formbold-input-group">
@@ -342,7 +360,7 @@
                     </button>
                 </div>
             </form>
-            <script src="./js/edit-product.js"></script>
+
 
             <form id="delete-product-form" class="hidden">
                 <div class="flex center">
@@ -452,7 +470,7 @@
                     </button>
                 </div>
             </form>
-            <script src="./js/delete-product.js"></script>
+
 
             <script>
                 function showForm(formId, btnId) {
@@ -604,6 +622,10 @@
         </div>
         </div>
     </main>
+    <script src="./js/imageupload.js"></script>
+    <script src="./js/add-product.js"></script>
+    <script src="./js/edit-product.js"></script>
+    <script src="./js/delete-product.js"></script>
     <script src="./js/handling-piece.js"></script>
 </body>
 

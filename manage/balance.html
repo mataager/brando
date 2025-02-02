@@ -69,10 +69,16 @@
                 </div>
 
             </div>
-            <div class="flex center">
-                <h2>Completed orders</h2>
-            </div>
             <div class="flex center flex-wrap">
+                <div class="flex flex-wrap center">
+                    <div class="card mb-20 height-max-content padding-15">
+
+                        <h3>Subscription Fee</h3>
+                        <p id="Subscription">600</p>
+                        <div class="shine"></div>
+
+                    </div>
+                </div>
 
                 <div class="flex flex-wrap center">
                     <div class="card mb-20 height-max-content padding-15">
@@ -114,7 +120,7 @@
             <script>
                 async function updateDashboard() {
                     try {
-                        
+
                         // Fetch the current Matager data
                         const response = await fetch(`${url}/Stores/${uid}/Matager.json`);
                         if (!response.ok) {
@@ -123,6 +129,7 @@
                         const data = await response.json();
 
                         // Get the elements by ID
+                        const Subscription = document.getElementById('Subscription');
                         const countElement = document.getElementById('count');
                         const amountElement = document.getElementById('amount');
                         const matagerCutElement = document.getElementById('matager-cut');
@@ -144,6 +151,7 @@
                         amountElement.textContent = roundedAmount;
                         matagerCutElement.textContent = roundedMatagerCut;
                         balanceElement.textContent = balance;
+                        Subscription.textContent = Subscription_amount;
 
                     } catch (error) {
                         console.error('Error updating dashboard:', error);
@@ -159,9 +167,13 @@
             <div class="flex flex-wrap center">
                 <div class="card mb-20 available-width padding-15 flex align-items flex-column">
                     <h2 class="mb-10">Matager Percentage</h2>
-                    <p class="mb-10i text-center">Matager charges a commission based on the plan you select. You can reduce this commission by upgrading to a higher plan.
-                    The required payment is automatically deducted from the total amount of all completed orders.</p>
-                    <a  href="./profile.html" class="mb-10i a-know-more"><p>want to know your matager commission !</p></a>
+                    <p class="mb-10i text-center">Matager charges a commission based on the plan you select. You can
+                        reduce this commission by upgrading to a higher plan.
+                        The required payment is automatically deducted from the total amount of all completed orders.
+                    </p>
+                    <a href="./profile.html" class="mb-10i a-know-more">
+                        <p>want to know your matager commission !</p>
+                    </a>
                     <button id="upgrade-plan-btn" class="m-LR-2 flex center align-items upgrade-plan-btn">
                         <p class="white mr-5i">Upgrade Your Plan Now</p>
                         <i class="bi bi-rocket-takeoff rocket-icon"></i>
@@ -211,7 +223,7 @@
                 document.addEventListener('DOMContentLoaded', () => {
                     const upgradeButton = document.getElementById('upgrade-plan-btn');
                     upgradeButton.addEventListener('click', () => {
-                        window.location.href = 'https://ecommerce-ai-5.github.io/MATAGER/pricing.html';
+                        window.location.href = 'https://matager.online/pricing';
                     });
                 });
 

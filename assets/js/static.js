@@ -2,6 +2,7 @@ const url = "https://matager-f1f00-default-rtdb.firebaseio.com";
 const storeurl = "https://matager-f1f00-default-rtdb.firebaseio.com";
 const storename = "Brando";
 const uid = "ll9EZ44LSlV6qh9jDzSwPFBgWXJ3";
+const storeuid = "ll9EZ44LSlV6qh9jDzSwPFBgWXJ3";
 const storePhoneNum = "+20 102 605 6204";
 const storePhoneNum2 = "";
 const storeEmail = "";

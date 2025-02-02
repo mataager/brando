@@ -267,6 +267,14 @@ body {
   margin-top: 18px;
 }
 
+.m-20 {
+  margin: 20px;
+}
+
+.m-50 {
+  margin: 50px;
+}
+
 .mt-20 {
   margin-top: 20px;
 }
@@ -365,6 +373,13 @@ body {
   width: 300px !important;
 }
 
+.w-500 {
+  width: 500px !important;
+}
+
+.w-800 {
+  width: 800px !important;
+}
 
 .w-400 {
   width: 400px !important;
@@ -432,7 +447,10 @@ body {
   padding: 5px;
   border-radius: 4px;
   margin: 15px;
-  line-height: 0px !important;
+  line-height: 1 !important;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .addbtn:hover {
@@ -605,7 +623,7 @@ input {
 
 
 .profile-icon-img {
-  background-image: url('../assets/images/favicon.png');
+  background-image: url('../assets/images/iicon.png');
   background-size: contain;
   /* Ensures the image fits within the circle */
   background-position: center;
@@ -682,13 +700,15 @@ h1 {
 }
 
 table {
-  width: 100%;
+  width: max-content;
   table-layout: fixed;
 }
 
-.tbl-header {
-  background-color: rgb(51 51 51);
-  width: fit-content;
+.tbl-header,
+thead {
+  background-color: rgb(51, 51, 51);
+  width: 100%;
+  /* Ensure it spans full width */
 }
 
 .tbl-content {
@@ -836,12 +856,25 @@ section {
   background-color: #00ff0026;
 }
 
+.blue-tr {
+  background-color: #00b7ff26;
+}
+
 .yellow-tr {
   background-color: #ffff002b;
 }
 
 .red-tr {
   background-color: #ff00002b;
+}
+
+.orange-tr {
+  background-color: #d57d005c
+}
+
+
+.light-move-tr {
+  background-color: #6a64f12b
 }
 
 /* proloader */
@@ -952,72 +985,111 @@ section {
 }
 
 /* The Modal (background) */
+/* Modal base styles */
 .modal {
   display: none;
+  /* Hidden by default */
   position: fixed;
+  /* Stay in place */
   z-index: 1;
-  padding-top: 100px;
+  /* Sit on top */
   left: 0;
   top: 0;
   width: 100%;
+  /* Full width */
   height: 100%;
+  /* Full height */
   overflow: auto;
-  background-color: rgb(0, 0, 0);
+  /* Enable scroll if needed */
   background-color: rgba(0, 0, 0, 0.9);
+  /* Black background with transparency */
+  justify-content: center;
+  align-items: center;
 }
 
-/* Modal Content (image) */
+.modal.show {
+  display: flex;
+}
+
+/* Specific modal styles for size-chart-modal */
+.size-chart-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: rgba(24, 24, 27, 0.95);
+  /* Dark background for the size chart modal */
+}
+
+.preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-container img {
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.flex.flex-column {
+  transition: opacity 0.3s ease;
+}
+
+/* Modal content styles */
 .modal-content {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
+  background: #222;
+  /* Dark gray background */
+  color: #fff;
+  /* White text */
+  border-radius: 8px;
+  padding: 20px 30px;
+  width: 90%;
+  max-width: 500px;
+  /* Set a maximum width */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  /* Add some shadow */
+  animation-name: zoom;
+  /* Add animation */
+  animation-duration: 0.6s;
+  text-align: center;
+  position: relative;
 }
 
-/* Caption of Modal Image */
+/* Close button styles */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #ff5757;
+}
+
+/* Caption (if needed) */
 #caption {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-  text-align: center;
+  margin-top: 10px;
+  font-size: 1rem;
   color: #ccc;
-  padding: 10px 0;
 }
 
 /* Add Animation */
-.modal-content,
-#caption {
-  animation-name: zoom;
-  animation-duration: 0.6s;
-}
-
 @keyframes zoom {
   from {
-    transform: scale(0);
+    transform: scale(0.5);
+    opacity: 0;
   }
 
   to {
     transform: scale(1);
+    opacity: 1;
   }
-}
-
-/* The Close Button */
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
 }
 
 .max-500 {
@@ -1276,6 +1348,18 @@ section {
   border-top: 2px solid #00ff0026
 }
 
+.border-top-b {
+  border-top: 2px solid #0d273a
+}
+
+.border-top-m {
+  border-top: 2px solid #1e1d3d
+}
+
+.border-top-o {
+  border-top: 2px solid #d57d005c
+}
+
 .border-top-r {
   border-top: 2px solid #ff00002b
 }
@@ -1288,4 +1372,177 @@ section {
 .drop-zone img[src]+p {
   display: none;
   /* Hide text when image is present */
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-check-input::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+.form-check-input:checked {
+  background-color: #0d6efd;
+}
+
+.form-check-input:checked::before {
+  transform: translateX(20px);
+}
+
+.form-check-label {
+  cursor: pointer;
+}
+
+.font-sm {
+  font-size: small;
+}
+
+/*  */
+/* Wave animation for loading */
+.wave-loading {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #f0f0f01a 25%, #e0e0e026 50%, #f0f0f057 75%);
+  background-size: 200% 100%;
+  animation: wave 5s infinite;
+}
+
+@keyframes wave {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.cart-item {
+  box-shadow: -2px 2px 2px 0px rgb(125 125 130 / 22%);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.cart-item td {
+  padding: 10px;
+  /* Add padding for a clean look */
+}
+
+.cart-item img {
+  border-radius: 5px;
+  /* Slightly rounded corners for the image */
+}
+
+.clickable-image.pointer {
+  cursor: pointer;
+  /* Indicates interactivity */
+  transition: transform 0.2s ease-in-out;
+}
+
+.clickable-image.pointer:hover {
+  transform: scale(1.05);
+  /* Adds a zoom effect on hover */
+}
+
+.shipped-disabled,
+.delivered-disabled {
+  background-color: #536387 !important;
+  color: black;
+}
+
+.shipped-disabled:hover,
+.delivered-disabled:hover {
+  background-color: #536387 !important;
+  color: black !important;
+}
+
+.width-100 {
+  width: 100% !important;
+}
+
+.add-icon-btn,
+.btn-close {
+  line-height: 0;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #f3f3f3;
+  padding: 3px;
+  border-radius: 50%;
+  background: #0a0914;
+  /* Push the button to the far right */
+}
+
+.add-icon-btn:hover,
+.btn-close :hover {
+  background: #ffffff;
+  color: #6a64f1;
+}
+
+.card2 {
+  margin: 20px;
+  height: fit-content;
+  width: fit-content;
+  background-color: var(--background-color);
+  box-shadow: 0px var(--card-box-shadow-1-y) var(--card-box-shadow-1-blur) var(--card-box-shadow-1), 0px var(--card-box-shadow-2-y) var(--card-box-shadow-2-blur) var(--card-box-shadow-2), 0 0 0 1px var(--card-border-color);
+  padding: 56px 16px 16px 16px;
+  border-radius: 15px;
+  position: relative;
+  transition: box-shadow 0.25s;
+}
+
+.close-button-modal {
+  padding: 5px;
+  top: 0;
+  right: 0;
+  position: absolute;
+  cursor: pointer;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.upload-chart-btn {
+  font-size: small !important;
+  margin-inline: auto !important;
+  padding: 7px 30px !important;
+  margin-top: 10px !important;
+  width: fit-content !important;
+}
+
+.gap-30 {
+  gap: 30px;
+}
+
+.delete-chart-icon-btn {
+  cursor: pointer;
+}
+
+.mt-50 {
+  margin-top: 50px;
 }

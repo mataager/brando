@@ -291,7 +291,7 @@ async function addOrderToCustomerHistory(Customeruid, idToken, order) {
   try {
     // Use `push()` to generate a random unique key automatically
     const saveResponse = await fetch(
-      `https://matager-f1f00-default-rtdb.firebaseio.com/users/${Customeruid}/orderHistory.json?auth=${idToken}`,
+      `https://matager-f1f00-default-rtdb.firebaseio.com/users/${Customeruid}/orderHistory/${uid}.json?auth=${idToken}`,
       {
         method: "POST",
         headers: {

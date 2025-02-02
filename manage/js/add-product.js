@@ -333,7 +333,6 @@ async function handleFileSelect(event, dropZone) {
   const formData = new FormData();
   formData.append("image", file);
 
-  const clientId = "e855dfc7fb0d876";
   const preloader = document.createElement("div");
   preloader.classList.add("uploadloader");
   dropZone.appendChild(preloader);
@@ -349,19 +348,12 @@ async function handleFileSelect(event, dropZone) {
   const count = dropZoneId.split("_").pop(); // Extract the count from the drop zone ID
 
   try {
-    const response = await fetch("https://api.imgur.com/3/image", {
-      method: "POST",
-      headers: {
-        Authorization: `Client-ID ${clientId}`,
-      },
-      body: formData,
-    });
-
-    const result = await response.json();
+    // choose by the 2 ways
+    // const result = await imgurUpload(clientId, formData);
+    const result = await uploadToCloudinary(file, uploadPreset, cloudName);
     preloader.remove();
 
     const imageUrl = result.data?.link;
-
     const uploadStatus = document.createElement("div");
     uploadStatus.classList.add("upload-status");
 
@@ -371,13 +363,10 @@ async function handleFileSelect(event, dropZone) {
       dropZone.innerHTML = "";
       dropZone.appendChild(imgElement);
 
-      // if (dropZoneId.includes("dropZone1")) {
-      //   document.getElementById(`img1_${count}`).value = imageUrl;
-      // } else if (dropZoneId.includes("dropZone2")) {
-      //   document.getElementById(`img2_${count}`).value = imageUrl;
-      // }
       // Extract the dropZone number and use it for setting the corresponding img
-      const dropZoneNumber = dropZoneId.match(/\d+/)[0]; // This extracts the number from the dropZoneId
+      const dropZoneNumber = dropZoneId.match(/\d+/)[0]; // Extract the number from dropZoneId
+
+      // Check if the dropZoneNumber is within the range 1-6
       if (dropZoneNumber >= 1 && dropZoneNumber <= 6) {
         document.getElementById(`img${dropZoneNumber}_${count}`).value =
           imageUrl;
@@ -391,17 +380,14 @@ async function handleFileSelect(event, dropZone) {
         uploadStatus.innerHTML = `<p><i class="bi bi-x-circle-fill red-check"></i></p><p class="hidden">${result.data.error}</p>`;
       }
     }
-    // Append upload status to the parent of drop zone
+
+    // Append upload status to the parent of the drop zone
     dropZone.parentElement.appendChild(uploadStatus);
   } catch (error) {
     preloader.remove();
-    const uploadStatus = document.getElementById(
-      `uploadStatus${dropZoneId.slice(-1)}`
-    );
-    if (uploadStatus) {
-      uploadStatus.innerHTML = `<p><i class="bi bi-x-circle-fill red-check"></i></p><p class="hidden">${error.message}</p>`;
-    }
-    // Append upload status to the parent of drop zone
+    const uploadStatus = document.createElement("div");
+    uploadStatus.classList.add("upload-status");
+    uploadStatus.innerHTML = `<p><i class="bi bi-x-circle-fill red-check"></i></p><p class="hidden">${error.message}</p>`;
     dropZone.parentElement.appendChild(uploadStatus);
   }
 }
@@ -425,7 +411,6 @@ async function handleDrop(event, dropZone) {
   const formData = new FormData();
   formData.append("image", files[0]);
 
-  const clientId = "e855dfc7fb0d876";
   const preloader = document.createElement("div");
   preloader.classList.add("uploadloader");
   dropZone.appendChild(preloader);
@@ -441,15 +426,9 @@ async function handleDrop(event, dropZone) {
   const count = dropZoneId.split("_").pop(); // Extract the count from the drop zone ID
 
   try {
-    const response = await fetch("https://api.imgur.com/3/image", {
-      method: "POST",
-      headers: {
-        Authorization: `Client-ID ${clientId}`,
-      },
-      body: formData,
-    });
-
-    const result = await response.json();
+    // choose by the 2 ways
+    // const result = await imgurUpload(clientId, formData);
+    const result = await uploadToCloudinary(file, uploadPreset, cloudName);
     preloader.remove();
 
     const imageUrl = result.data?.link;
@@ -462,11 +441,6 @@ async function handleDrop(event, dropZone) {
       dropZone.innerHTML = "";
       dropZone.appendChild(imgElement);
 
-      // if (dropZoneId.includes("dropZone1")) {
-      //   document.getElementById(`img1_${count}`).value = imageUrl;
-      // } else if (dropZoneId.includes("dropZone2")) {
-      //   document.getElementById(`img2_${count}`).value = imageUrl;
-      // }
       // Extract the dropZone number and use it for setting the corresponding img
       const dropZoneNumber = dropZoneId.match(/\d+/)[0]; // Extract the number from dropZoneId
 
@@ -484,10 +458,12 @@ async function handleDrop(event, dropZone) {
         uploadStatus.innerHTML = `<p><i class="bi bi-x-circle-fill red-check"></i></p><p class="hidden">${result.data.error}</p>`;
       }
     }
-    // Append upload status to the parent of drop zone
+
+    // Append upload status to the parent of the drop zone
     dropZone.parentElement.appendChild(uploadStatus);
   } catch (error) {
     preloader.remove();
+
     const uploadStatus = document.createElement("div");
     uploadStatus.classList.add("upload-status");
     uploadStatus.innerHTML = `<p><i class="bi bi-x-circle-fill red-check"></i></p><p class="hidden">${error.message}</p>`;
