@@ -428,7 +428,7 @@ async function handleDrop(event, dropZone) {
   try {
     // choose by the 2 ways
     // const result = await imgurUpload(clientId, formData);
-    const result = await uploadToCloudinary(formData, uploadPreset, cloudName);
+    const result = await uploadToCloudinary(files[0], uploadPreset, cloudName);
     preloader.remove();
 
     const imageUrl = result.data?.link;
